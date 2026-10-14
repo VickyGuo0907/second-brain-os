@@ -328,7 +328,7 @@ summary a{font-weight:700}
   color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .counts b{color:var(--ink);font-weight:600}
 footer{border-top:1px solid var(--rule);padding:22px;text-align:center;color:var(--faint)}
-</style><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "03592e9f97c244c1b5c1fd2512e49f0d"}'></script><!-- End Cloudflare Web Analytics -->
+</style><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "251090521ca24c01bde87a953db3dea4"}'></script><!-- End Cloudflare Web Analytics -->
 </head><body>
 <header><div class="bar">
   <a class="brand" href="index.html">[[ second<span>brain</span>os ]]</a>
