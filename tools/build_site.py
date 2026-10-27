@@ -10,7 +10,10 @@ import json, os, html
 D = json.load(open("site_data.json"))
 OUT = "."
 os.makedirs(OUT, exist_ok=True)
-REPO = "https://github.com/undefined-ui/second-brain-os"
+REPO = "https://github.com/VickyGuo0907/second-brain-os"
+# Visible credit, shown in every footer.
+CREDIT = 'Made by <a href="https://github.com/VickyGuo0907" rel="noopener">Daniel Guo</a> · Inspired by <a href="https://github.com/undefined-ui/second-brain-os" rel="noopener">Second Brain OS</a> by <a href="https://x.com/undefinedKi" rel="noopener">@undefinedKi</a>'
+ICON = '<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 32 32\'%3E%3Crect width=\'32\' height=\'32\' rx=\'7\' fill=\'%23F7F9F6\'/%3E%3Crect x=\'.5\' y=\'.5\' width=\'31\' height=\'31\' rx=\'6.5\' fill=\'none\' stroke=\'%23D2DACF\'/%3E%3Cpath d=\'M10 21 L16 11 L22 19 M16 11 L23 9\' stroke=\'%231F6B52\' stroke-width=\'1.6\' fill=\'none\'/%3E%3Ccircle cx=\'10\' cy=\'21\' r=\'3\' fill=\'%23F7F9F6\' stroke=\'%231F6B52\' stroke-width=\'1.6\'/%3E%3Ccircle cx=\'16\' cy=\'11\' r=\'3\' fill=\'%23F7F9F6\' stroke=\'%231F6B52\' stroke-width=\'1.6\'/%3E%3Ccircle cx=\'22\' cy=\'19\' r=\'3\' fill=\'%23F7F9F6\' stroke=\'%231F6B52\' stroke-width=\'1.6\'/%3E%3Ccircle cx=\'24\' cy=\'8\' r=\'2\' fill=\'%231F6B52\'/%3E%3C/svg%3E">'
 
 CSS = """
 :root{
@@ -185,6 +188,7 @@ def header(active):
   <nav>
     <a href="index.html" class="{'on' if active=='guide' else ''}">Guide</a>
     <a href="resources.html" class="{'on' if active=='res' else ''}">Resources</a>
+    <a href="tree.html">Tree</a>
     <a href="{REPO}">Repo</a>
   </nav>
   {'<button class="toc-btn" id="toc">Index</button>' if active=='guide' else ''}
@@ -268,7 +272,7 @@ GUIDE = f"""<!DOCTYPE html><html lang="en"><head>
   <main id="main"></main>
   <div class="rail" id="rail"></div>
 </div>
-<footer>Generated from the repository. <a href="{REPO}">github.com/undefined-ui/second-brain-os</a></footer>
+<footer>Generated from the repository. <a href="{REPO}">github.com/VickyGuo0907/second-brain-os</a> · {CREDIT}</footer>
 <script id="data" type="application/json">{json.dumps({k:D[k] for k in ['pages','sections','order']})}</script>
 <script>
 const D=JSON.parse(document.getElementById('data').textContent);
@@ -386,7 +390,7 @@ for r in R:
 
 RES = f"""<!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Second Brain OS - resources</title>
+{ICON}<title>Second Brain OS - resources</title>
 <meta name="description" content="{len(R)} checked links: Obsidian plugins by installs, repositories by stars, papers, tools and reading.">
 <style>{CSS}</style></head><body>
 {header('res')}
@@ -401,7 +405,7 @@ RES = f"""<!DOCTYPE html><html lang="en"><head>
   <div class="count" id="count"></div>
   <div id="rows"></div>
 </div>
-<footer>Generated from the repository. <a href="{REPO}">github.com/undefined-ui/second-brain-os</a></footer>
+<footer>Generated from the repository. <a href="{REPO}">github.com/VickyGuo0907/second-brain-os</a> · {CREDIT}</footer>
 <script id="rdata" type="application/json">{json.dumps(R)}</script>
 <script>
 const R=JSON.parse(document.getElementById('rdata').textContent);

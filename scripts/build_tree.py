@@ -95,10 +95,14 @@ def docstring(path):
 
 
 def site_pages():
-    s = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
-    i = s.find('application/json">') + len('application/json">')
-    D = json.loads(s[i:s.find("</script>", i)])
-    return D
+    path = os.path.join(ROOT, "site_data.json")
+    if not os.path.isfile(path):
+        raise FileNotFoundError(
+            "Missing site_data.json. "
+            "Run python tools/extract_site.py from the repository root first."
+        )
+    with io.open(path, encoding="utf-8") as f:
+        return json.load(f)
 
 
 def row(name, href, desc, cls=""):
@@ -349,7 +353,7 @@ footer{border-top:1px solid var(--rule);padding:22px;text-align:center;color:var
   <div class="cols">{{TREE}}</div>
   <div class="counts"><b>{{COUNTS}}</b><span>generated from the repo</span></div>
 </div>
-<footer>Generated from the repository. <a href="https://github.com/undefined-ui/second-brain-os">github.com/undefined-ui/second-brain-os</a> · by <a href="https://x.com/undefinedKi" rel="noopener">@undefinedKi</a></footer>
+<footer>Generated from the repository. <a href="https://github.com/undefined-ui/second-brain-os">github.com/undefined-ui/second-brain-os</a> · Made by <a href="https://github.com/VickyGuo0907" rel="noopener">Daniel Guo</a> · Inspired by <a href="https://github.com/undefined-ui/second-brain-os" rel="noopener">Second Brain OS</a> by <a href="https://x.com/undefinedKi" rel="noopener">@undefinedKi</a></footer>
 </body></html>"""
 
 
