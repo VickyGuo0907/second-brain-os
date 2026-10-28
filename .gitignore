@@ -9,3 +9,4 @@ node_modules/
 *.csv
 site_data.json
 .idea/
+_site/
