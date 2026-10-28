@@ -353,7 +353,7 @@ footer{border-top:1px solid var(--rule);padding:22px;text-align:center;color:var
   <div class="cols">{{TREE}}</div>
   <div class="counts"><b>{{COUNTS}}</b><span>generated from the repo</span></div>
 </div>
-<footer>Generated from the repository. <a href="https://github.com/undefined-ui/second-brain-os">github.com/undefined-ui/second-brain-os</a> · Made by <a href="https://github.com/VickyGuo0907" rel="noopener">Daniel Guo</a> · Inspired by <a href="https://github.com/undefined-ui/second-brain-os" rel="noopener">Second Brain OS</a> by <a href="https://x.com/undefinedKi" rel="noopener">@undefinedKi</a></footer>
+<footer>Generated from the repository. <a href="https://github.com/undefined-ui/second-brain-os">github.com/undefined-ui/second-brain-os</a> · Made by <a href="https://github.com/VickyGuo0907" rel="noopener">Vicky Guo</a> · Inspired by <a href="https://github.com/undefined-ui/second-brain-os" rel="noopener">Second Brain OS</a> by <a href="https://x.com/undefinedKi" rel="noopener">@undefinedKi</a></footer>
 </body></html>"""
 
 

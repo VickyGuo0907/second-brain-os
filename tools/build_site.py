@@ -12,7 +12,7 @@ OUT = "."
 os.makedirs(OUT, exist_ok=True)
 REPO = "https://github.com/VickyGuo0907/second-brain-os"
 # Visible credit, shown in every footer.
-CREDIT = 'Made by <a href="https://github.com/VickyGuo0907" rel="noopener">Daniel Guo</a> · Inspired by <a href="https://github.com/undefined-ui/second-brain-os" rel="noopener">Second Brain OS</a> by <a href="https://x.com/undefinedKi" rel="noopener">@undefinedKi</a>'
+CREDIT = 'Made by <a href="https://github.com/VickyGuo0907" rel="noopener">Vicky Guo</a> · Inspired by <a href="https://github.com/undefined-ui/second-brain-os" rel="noopener">Second Brain OS</a> by <a href="https://x.com/undefinedKi" rel="noopener">@undefinedKi</a>'
 ICON = '<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 32 32\'%3E%3Crect width=\'32\' height=\'32\' rx=\'7\' fill=\'%23F7F9F6\'/%3E%3Crect x=\'.5\' y=\'.5\' width=\'31\' height=\'31\' rx=\'6.5\' fill=\'none\' stroke=\'%23D2DACF\'/%3E%3Cpath d=\'M10 21 L16 11 L22 19 M16 11 L23 9\' stroke=\'%231F6B52\' stroke-width=\'1.6\' fill=\'none\'/%3E%3Ccircle cx=\'10\' cy=\'21\' r=\'3\' fill=\'%23F7F9F6\' stroke=\'%231F6B52\' stroke-width=\'1.6\'/%3E%3Ccircle cx=\'16\' cy=\'11\' r=\'3\' fill=\'%23F7F9F6\' stroke=\'%231F6B52\' stroke-width=\'1.6\'/%3E%3Ccircle cx=\'22\' cy=\'19\' r=\'3\' fill=\'%23F7F9F6\' stroke=\'%231F6B52\' stroke-width=\'1.6\'/%3E%3Ccircle cx=\'24\' cy=\'8\' r=\'2\' fill=\'%231F6B52\'/%3E%3C/svg%3E">'
 
 CSS = """
