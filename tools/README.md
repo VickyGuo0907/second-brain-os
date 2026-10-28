@@ -1,5 +1,32 @@
 # tools
 
+## Automatic publishing
+
+The `Build and deploy website` workflow rebuilds the graph, reader, resources
+page, and tree from source on every push to `main`. It checks that documentation
+pages appear in the generated reader, graph, and tree before publishing.
+Pull requests run the same build checks without deploying.
+
+One-time setup: in GitHub **Settings → Pages → Build and deployment**, set
+**Source** to **GitHub Actions**. Merge the workflow into `main`; that push
+starts the first deployment. If it needs retrying, use **Actions → Build and
+deploy website → Run workflow** on `main`.
+
+After setup, edit the Markdown, review and commit those source changes, and
+push. You no longer need to run the four generators or commit generated output
+for publication. Existing generated files remain in Git for compatibility;
+the workflow always rebuilds them and deploys the fresh artifact without
+writing a generated commit back to the repository.
+
+The artifact contains the three HTML entry pages, `assets/`, `docs/`, and
+`resources/`. Keep all content in those folders public. Your separate private
+Obsidian vault is not used by this workflow. External JavaScript CDNs and
+external resource links still need a browser check; the build checks do not
+test their availability.
+
+For a local preview, install `python -m pip install -r tools/requirements-site.txt`,
+then use the build commands below and `python3 -m http.server 4173`.
+
 The site at [secondbrainos.dev](https://secondbrainos.dev/)
 is generated from this repository, so it cannot drift from the guide.
 
