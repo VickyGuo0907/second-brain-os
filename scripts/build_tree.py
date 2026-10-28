@@ -223,7 +223,7 @@ def main():
              for i in ids], open_=False))
     out.append('<div class="sec"><details open><summary>'
                f'<a href="index.html">docs/</a><span class="c"># The guide. '
-               f'10 sections, {n_guide} pages</span></summary>'
+               f'{len(guide_secs)} sections, {n_guide} pages</span></summary>'
                '<div class="kids">' + "".join(guide_secs) + "</div></details></div>")
 
     # the course

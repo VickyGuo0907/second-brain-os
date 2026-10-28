@@ -46,5 +46,16 @@ with agents, each ending in a hands-on build.
 
 ---
 
+## The Learning Materials
+My learning references, notes, and experiments in AI agent
+engineering and infrastructure. Start with the
+[section overview](learning-materials/README.md).
+
+| Learning | Pages |
+|---|---|
+| [Claude Code from Source](learning-materials/claude-code-from-source.md) | 1 |
+| [Understanding AI Infrastructure](learning-materials/ai-infrastructure.md) | 1 |
+| [AI Agents in Depth](learning-materials/ai-agents-in-depth.md) | 1 |
+
 [Back to the repo](../README.md)
 
