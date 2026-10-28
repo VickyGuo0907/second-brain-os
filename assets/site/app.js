@@ -28,7 +28,7 @@ const isMobile = () => innerWidth <= 760;
 const root = getComputedStyle(document.documentElement);
 const tok = n => root.getPropertyValue(n).trim();
 const COLOR = {
-  root: tok('--c-root'), guide: tok('--c-guide'), course: tok('--c-course'), handbook: tok('--c-handbook'),
+  root: tok('--c-root'), guide: tok('--c-guide'), course: tok('--c-course'), handbook: tok('--c-handbook'), learning: tok('--c-learning'),
   term: tok('--c-term'), tool: tok('--c-tool'), res: tok('--c-res'),
 };
 const PAPER = new THREE.Color(tok('--paper'));
@@ -36,6 +36,7 @@ const LAYERS = [
   { key: 'guide', label: 'Guide' },
   { key: 'course', label: 'Course' },
   { key: 'handbook', label: 'Handbooks' },
+  { key: 'learning', label: 'Learning' },
   { key: 'term', label: 'Glossary' },
   { key: 'tool', label: 'Toolkit' },
   { key: 'res', label: 'Resources', off: true },
@@ -90,7 +91,7 @@ renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 // where each layer settles: a loose continent per collection around the centre
 const R = 230;
 const ANCHOR = {
-  guide: [-1, .05, .25], course: [.8, .32, -.42], handbook: [.78, -.36, .5],
+  guide: [-1, .05, .25], course: [.8, .32, -.42], handbook: [.78, -.36, .5], learning: [-.7, -.5, .7],
   term: [-.08, .62, -.55], tool: [-.28, -.92, -.28], res: [.25, .95, .55],
 };
 for (const n of nodes) {
@@ -700,7 +701,7 @@ function renderInfo(n) {
     const members = edgeIds(n, 'contains', 'out');
     const cid = n.id.slice(4);
     let body = '';
-    if (['guide', 'course', 'handbook'].includes(cid)) {
+    if (['guide', 'course', 'handbook', 'learning'].includes(cid)) {
       const secs = sectionsOf(cid);
       body = group('Sections', secs.map(id => li(id, `${byId.get(id).pages.length} pages`)).join(''), secs.length);
       h += kicker(n) + `<h2>${esc(n.label)}</h2><p class="desc">${esc(n.desc)}</p>` +
@@ -802,11 +803,15 @@ $('#r-graph').onclick = () => go(S.sel ? S.sel.id : 'root');
 
 // ------------------------------------------------------------------ hero
 $('#paths').innerHTML = [
-  ['guide', '01–10', 'The second-brain guide', 'A path you follow once: from the concept to a vault that maintains itself.'],
-  ['course', 'C0–C6', 'The agents course', 'Seven modules from a single prompt to a production agent.'],
-  ['handbook', 'T1–T5', 'Handbooks', 'References for one layer at a time. Dip in anywhere.'],
-].map(([k, badge, label, p]) => {
-  const pages = sectionsOf(k).reduce((a, s) => a + byId.get(s).pages.length, 0);
+  ['guide', 'The second-brain guide', 'A path you follow once: from the concept to a vault that maintains itself.'],
+  ['course', 'The agents course', 'Seven modules from a single prompt to a production agent.'],
+  ['handbook', 'Handbooks', 'References for one layer at a time. Dip in anywhere.'],
+  ['learning', 'Learning materials', 'My reading list, with notes and experiments as they grow.'],
+].map(([k, label, p]) => {
+  const secs = sectionsOf(k);
+  const pages = secs.reduce((a, s) => a + byId.get(s).pages.length, 0);
+  const first = byId.get(secs[0]).badge, last = byId.get(secs[secs.length - 1]).badge;
+  const badge = first === last ? first : `${first}–${last}`;
   return `<button class="path" data-go="col:${k}" style="--dot:${COLOR[k]}"><span class="pk">${badge}</span><b>${label}</b><span class="pn">${pages} pages</span><p>${p}</p></button>`;
 }).join('');
 $('#paths').addEventListener('click', e => { const t = e.target.closest('[data-go]'); if (t) go(t.dataset.go); });
@@ -854,7 +859,7 @@ function renderContents() {
       return `<div class="cs${open ? ' open' : ''}" style="--dot:${COLOR[col]}"><button data-sec="${esc(sid)}"><span class="k">${esc(s.badge)}</span>${esc(s.label)}<span class="n">${s.pages.length}</span></button><ol>` +
         s.pages.map(pid => `<li><button data-page="${esc(pid)}" data-node="${esc(pid)}" class="${pid === cur ? 'cur' : ''}">${esc(byId.get(pid).label)}</button></li>`).join('') + '</ol></div>';
     }).join('') + '</div>';
-  $('#c-body').innerHTML = block('guide', 'the second-brain guide') + block('course', 'the agents course') + block('handbook', 'handbooks');
+  $('#c-body').innerHTML = block('guide', 'the second-brain guide') + block('course', 'the agents course') + block('handbook', 'handbooks') + block('learning', 'learning materials');
 }
 function openContents() { renderContents(); document.body.classList.add('c-open'); cBtn.setAttribute('aria-expanded', 'true'); }
 function closeContents() { document.body.classList.remove('c-open'); cBtn.setAttribute('aria-expanded', 'false'); }

@@ -117,6 +117,9 @@ COLLECTIONS = {
     "handbook": ("Handbooks", "handbook",
                  "Not a path - references. The full menu of techniques, tools and "
                  "builds for one layer of the course. Dip in anywhere."),
+    "learning": ("Learning materials", "learning",
+                 "My reading list: books and sources I am studying, with notes, "
+                 "questions and experiments as they grow."),
     "glossary": ("Glossary", "term",
                  "The ideas the whole site keeps coming back to. Each one links to "
                  "the pages that lean on it hardest."),
@@ -148,11 +151,13 @@ def collection_of(sec):
         return "course"
     if sec.startswith("track-"):
         return "handbook"
+    if sec.startswith("learning-"):
+        return "learning"
     return "guide"
 
 
 pages, page_src = {}, {}
-counters = {"guide": 0, "course": 0, "handbook": 0}
+counters = {"guide": 0, "course": 0, "handbook": 0, "learning": 0}
 for sec in sec_order:
     readme = read(f"docs/{sec}/README.md")
     title = re.search(r"^# (.+)$", readme, re.M).group(1).strip()
@@ -160,7 +165,7 @@ for sec in sec_order:
     col = collection_of(sec)
     n = counters[col]
     counters[col] += 1
-    badge = {"guide": f"{n + 1:02d}", "course": f"C{n}", "handbook": f"T{n + 1}"}[col]
+    badge = {"guide": f"{n + 1:02d}", "course": f"C{n}", "handbook": f"T{n + 1}", "learning": f"L{n + 1}"}[col]
     order = []
     for m in re.finditer(r"^\s*(?:\d+\.|[-*])\s+\[[^\]]+\]\(([a-z0-9-]+)\.md\)", readme, re.M):
         if m.group(1) != "README" and exists(f"docs/{sec}/{m.group(1)}.md"):

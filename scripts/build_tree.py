@@ -212,7 +212,7 @@ def main():
     guide_secs = []
     n_guide = 0
     for sec, ids in D["order"].items():
-        if sec.startswith("track-") or sec.startswith("course-"):
+        if sec.startswith(("track-", "course-", "learning-")):
             continue
         meta = D["sections"][sec]
         n_guide += len(ids)
@@ -261,6 +261,15 @@ def main():
                f'Five handbooks, {n_track} pages, each ends in a build'
                '</span></summary><div class="kids">'
                + "".join(track_secs) + "</div></details></div>")
+
+    # learning materials
+    for sec, ids in D["order"].items():
+        if sec.startswith("learning-"):
+            out.append('<div class="sec">' + branch(
+                f"docs/{sec}/", "index.html#" + ids[0],
+                f"{D['sections'][sec]['title']} · {len(ids)} pages",
+                [row(i.split("/")[1] + ".md", "index.html#" + i, title[i])
+                 for i in ids]) + "</div>")
 
     # resources
     res = sorted(f for f in os.listdir(os.path.join(ROOT, "resources"))
